@@ -1,100 +1,75 @@
 package com.skills.hub.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 /*
 =========================================================
 WHAT IS THIS CLASS?
 =========================================================
 
-This represents SUBSCRIPTION.
+This represents a SKILL PACK (like a course)
 
-It connects:
-User + SkillPack
+ Example:
+- Java Basics
+- Spring Boot Mastery
+- Python Fundamentals
 
-Example:
-Hari -> subscribed to Java Course
+Each object = one course
 
 =========================================================
 */
 
 @Entity
-@Table(name = "subscriptions")
-public class Subscription {
+@Table(name = "skill_packs")
+public class SkillPack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Many subscriptions belong to one user
-    @ManyToOne
-    private User user;
-
-    // Many subscriptions belong to one skill pack
-    @ManyToOne
-    private SkillPack skillPack;
-
-    private LocalDate startDate;
-    private LocalDate endDate;
-
-    private String status; // ACTIVE / CANCELLED
+    private String title;
+    private String description;
+    private Double price;
 
     // =========================
     // GETTERS AND SETTERS
     // =========================
-
+    public SkillPack() {
+     
+    }
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
-        //  assign subscription id
+        //  assign id
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUser(User user) {
-        // link user
-        this.user = user;
+    public void setTitle(String title) {
+        // store course title
+        this.title = title;
     }
 
-    public SkillPack getSkillPack() {
-        return skillPack;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSkillPack(SkillPack skillPack) {
-        //  link skill pack
-        this.skillPack = skillPack;
+    public void setDescription(String description) {
+        //  store course description
+        this.description = description;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        //  set start date
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        //  set end date
-        this.endDate = endDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        //  set ACTIVE or CANCELLED
-        this.status = status;
+    public void setPrice(Double price) {
+        // store price
+        this.price = price;
     }
 }
