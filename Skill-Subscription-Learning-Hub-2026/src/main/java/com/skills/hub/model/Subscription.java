@@ -98,3 +98,4 @@ public class Subscription {
         this.status = status;
     }
 }
+}
